@@ -1,5 +1,6 @@
+import 'package:ccn_weather/ui/home/home_view_model.dart';
 import 'package:provider/provider.dart';
 
 var providers = [
-  //ChangeNotifierProvider<T>(create: (_) => T)
+  ChangeNotifierProvider<HomeViewModel>(create: (_) => HomeViewModel())
 ];

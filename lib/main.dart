@@ -1,14 +1,16 @@
 import 'package:ccn_weather/ui/home/home.dart';
 import 'package:ccn_weather/utils/locator_setup.dart';
+import 'package:ccn_weather/utils/provider_setup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
 
   locatorSetup();
-  //runApp(MultiProvider(providers: providers, child: const MyApp()));
+  runApp(MultiProvider(providers: providers, child: const MyApp()));
 
-  runApp(const MyApp());
+  //runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
