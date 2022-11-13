@@ -197,7 +197,7 @@ class Hourly {
     //feelsLike = json['feels_like'];
     pressure = json['pressure'];
     humidity = json['humidity'];
-    dewPoint = json['dew_point'];
+    //dewPoint = json['dew_point'];
     // uvi = json['uvi'];
     // clouds = json['clouds'];
     // visibility = json['visibility'];
@@ -221,7 +221,7 @@ class Hourly {
     //data['feels_like'] = this.feelsLike;
     data['pressure'] = this.pressure;
     data['humidity'] = this.humidity;
-    data['dew_point'] = this.dewPoint;
+    //data['dew_point'] = this.dewPoint;
     // data['uvi'] = this.uvi;
     // data['clouds'] = this.clouds;
     // data['visibility'] = this.visibility;

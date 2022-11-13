@@ -1,5 +1,8 @@
+import 'package:ccn_weather/ui/details/details_view.dart';
 import 'package:ccn_weather/ui/home/home_view_model.dart';
+import 'package:ccn_weather/utils/app/app_routes.dart';
 import 'package:ccn_weather/utils/decorator.dart';
+import 'package:ccn_weather/utils/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -60,15 +63,35 @@ class _HomeState extends State<Home> {
                         fontWeight: FontWeight.w700, fontSize: 18),
                     ),
                     const SizedBox(height: 10,),
-                    Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecorators.outlineContainerDecoration(width: 1, radius: 20, color: Colors.black.withOpacity(0.3)),
-                      height: 100,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          "${model.weatherModel!.current!.temp.toString()} \u00B0C", style: const TextStyle(
-                            fontWeight: FontWeight.w800, fontSize: 38),
+                    GestureDetector(
+                      onTap: (){
+
+                        ///using namedPageRoute
+                        pushToNamed(context: context, route: Routes.detailsView, arguments: {
+                          'current_weather' : "${model.weatherModel!.current!.temp.toString()} \u00B0C",
+                          'current_location' : model.weatherModel!.timezone
+                        });
+
+
+                        ///using materialPageRoute
+                        // push(context: context, route: DetailsView(
+                        //     detailsValue: {
+                        //       'current_weather' : "${model.weatherModel!.current!.temp.toString()} \u00B0C",
+                        //       'current_location' : model.weatherModel!.timezone
+                        //     },
+                        // ),
+                        // );
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecorators.outlineContainerDecoration(width: 1, radius: 20, color: Colors.black.withOpacity(0.3)),
+                        height: 100,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "${model.weatherModel!.current!.temp.toString()} \u00B0C", style: const TextStyle(
+                              fontWeight: FontWeight.w800, fontSize: 38),
+                          ),
                         ),
                       ),
                     ),
@@ -87,22 +110,40 @@ class _HomeState extends State<Home> {
                         child: Row(
                           children: [
                           ...List.generate(model.weatherModel!.hourly!.length, (index) =>
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecorators.outlineContainerDecoration(width: 1, radius: 29, color: Colors.black.withOpacity(0.3)),
-                                  height: 100,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                      Text(
-                                        "${model.weatherModel!.hourly![index].temp.toString()} \u00B0C", style: const TextStyle(
-                                          fontWeight: FontWeight.w700, fontSize: 20),
-                                      ),
-                                ],),
+                              GestureDetector(
+                                onTap: (){
+
+                                  ///using namedPageRoute
+                                  pushToNamed(context: context, route: Routes.detailsView, arguments: {
+                                    'current_weather' : "${model.weatherModel!.hourly![index].temp.toString()} \u00B0C",
+                                    'current_location' : model.weatherModel!.timezone
+                                  });
+
+                                  ///using materialPageRoute
+                                  // push(context: context, route: DetailsView(
+                                  //   detailsValue: {
+                                  //     'current_weather' : "${model.weatherModel!.hourly![index].temp.toString()} \u00B0C"
+                                  //   },
+                                  // ),
+                                  // );
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecorators.outlineContainerDecoration(width: 1, radius: 29, color: Colors.black.withOpacity(0.3)),
+                                    height: 100,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                        Text(
+                                          "${model.weatherModel!.hourly![index].temp.toString()} \u00B0C", style: const TextStyle(
+                                            fontWeight: FontWeight.w700, fontSize: 20),
+                                        ),
+                                  ],),
+                                    ),
                                   ),
                                 ),
                               ),
